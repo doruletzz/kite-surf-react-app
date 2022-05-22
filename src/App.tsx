@@ -2,6 +2,7 @@ import React from "react";
 import LoginForm from "./pages/login/LoginForm";
 
 import { Container } from "react-bootstrap";
+import "leaflet/dist/leaflet.css";
 
 import { Provider } from "react-redux";
 import { Navigate } from "react-router";
