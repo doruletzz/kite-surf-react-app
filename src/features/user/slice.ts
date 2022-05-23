@@ -9,8 +9,11 @@ export interface FetchError {
   message: string;
 }
 
-export interface User {
+export interface Entity {
   id: number;
+}
+
+export interface User extends Entity {
   createdAt: Date;
   name: string;
   email: string;
@@ -53,7 +56,7 @@ const { actions, reducer } = userSlice;
 
 export const { receiveUser, fetchFailed, fetchUser } = actions;
 
-export const fetchUserById = (id: number): AppThunk => {
+export const getUserById = (id: number): AppThunk => {
   return async (dispatch) => {
     dispatch(fetchUser());
     axios

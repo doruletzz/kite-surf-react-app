@@ -1,11 +1,13 @@
 import { configureStore, Action } from "@reduxjs/toolkit";
 
 import userReducer from "../user/slice";
+import spotReducer from "../spot/slice";
 import { ThunkAction } from "redux-thunk";
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
+    spot: spotReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

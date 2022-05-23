@@ -8,7 +8,6 @@ const Map = () => {
       style={{ width: "100%", height: "24rem" }}
       center={[51.505, -0.09]}
       zoom={3}
-      scrollWheelZoom={false}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

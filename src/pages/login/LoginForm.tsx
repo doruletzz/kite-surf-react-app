@@ -5,7 +5,7 @@ import { Form, Button, Container, Spinner } from "react-bootstrap";
 import axios from "axios";
 import { SERVER_URL } from "../../utils/constants";
 import { useAppDispatch, useAppSelector } from "../../features/app/hooks";
-import { fetchUserById } from "../../features/user/slice";
+import { getUserById } from "../../features/user/slice";
 import { Navigate } from "react-router";
 
 const LoginForm = () => {
@@ -31,7 +31,7 @@ const LoginForm = () => {
 
     const userId = await login(username, password);
 
-    dispatch(fetchUserById(userId));
+    dispatch(getUserById(userId));
     setValidated(true);
   };
 
