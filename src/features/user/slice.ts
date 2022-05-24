@@ -5,7 +5,7 @@ import { AppThunk } from "../app/store";
 import axios from "axios";
 import { SERVER_URL } from "../../utils/constants";
 
-export interface FetchError {
+export interface Error {
   message: string;
 }
 
@@ -22,7 +22,7 @@ export interface User extends Entity {
 
 export type UserState = {
   isFetching: boolean;
-  error: FetchError | null;
+  error: Error | null;
   user: User | null;
 };
 
@@ -45,7 +45,7 @@ export const userSlice = createSlice({
       state.isFetching = false;
     },
 
-    fetchFailed: (state, action: PayloadAction<FetchError>) => {
+    fetchFailed: (state, action: PayloadAction<Error>) => {
       state.error = action.payload;
       state.isFetching = false;
     },

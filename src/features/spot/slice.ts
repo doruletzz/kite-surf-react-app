@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { SERVER_URL } from "../../utils/constants";
 import { AppThunk } from "../app/store";
-import { Entity, FetchError } from "../user/slice";
+import { Entity, Error } from "../user/slice";
 
 export interface FavouriteSpot extends Entity {
   createdAt: Date;
@@ -21,7 +21,7 @@ export interface Spot extends Entity {
 
 export type UserState = {
   isFetching: boolean;
-  error: FetchError | null;
+  error: Error | null;
   spots: Array<Spot>;
   favourites: Array<FavouriteSpot>;
 };
@@ -46,7 +46,7 @@ export const spotSlice = createSlice({
       state.isFetching = false;
     },
 
-    fetchAllSpotsFailed: (state, action: PayloadAction<FetchError>) => {
+    fetchAllSpotsFailed: (state, action: PayloadAction<Error>) => {
       state.error = action.payload;
       state.isFetching = false;
     },
@@ -62,12 +62,20 @@ export const spotSlice = createSlice({
       state.isFetching = false;
     },
 
-    fetchAllFavouriteSpotsFailed: (
-      state,
-      action: PayloadAction<FetchError>
-    ) => {
+    fetchAllFavouriteSpotsFailed: (state, action: PayloadAction<Error>) => {
       state.error = action.payload;
       state.isFetching = false;
+    },
+    saveFavouriteSpot: (state, action: PayloadAction<FavouriteSpot>) => {
+      state.favourites = state.favourites.concat(action.payload);
+    },
+    errorFavouriteSpot: (state, action: PayloadAction<Error>) => {
+      state.error = action.payload;
+    },
+    removeFavouriteSpot: (state, action: PayloadAction<FavouriteSpot>) => {
+      state.favourites = state.favourites.filter(
+        (fs) => fs.id !== action.payload.id
+      );
     },
   },
 });
@@ -82,6 +90,32 @@ export const getAllSpots = (): AppThunk => {
         dispatch(receiveAllSpots(data));
       })
       .catch((error) => dispatch(fetchAllSpotsFailed(error)));
+  };
+};
+
+export const addFavouriteSpot = (fs: Spot): AppThunk => {
+  const favSpot = { createdAt: new Date(), id: -1, spot: fs } as FavouriteSpot;
+
+  return async (dispatch) => {
+    axios
+      .post(SERVER_URL + "/favourites", favSpot)
+      .then(({ data }) => {
+        console.log(data);
+        dispatch(saveFavouriteSpot(data));
+      })
+      .catch((error) => dispatch(errorFavouriteSpot(error)));
+  };
+};
+
+export const deleteFavouriteSpot = (fs: FavouriteSpot): AppThunk => {
+  return async (dispatch) => {
+    axios
+      .delete(SERVER_URL + "/favourites/" + fs.id)
+      .then(({ data }) => {
+        console.log(data);
+        dispatch(removeFavouriteSpot(data));
+      })
+      .catch((error) => dispatch(errorFavouriteSpot(error)));
   };
 };
 
@@ -107,6 +141,9 @@ export const {
   receiveAllFavouriteSpots,
   fetchAllFavouriteSpotsFailed,
   fetchAllFavouriteSpots,
+  saveFavouriteSpot,
+  errorFavouriteSpot,
+  removeFavouriteSpot,
 } = actions;
 
 export default reducer;

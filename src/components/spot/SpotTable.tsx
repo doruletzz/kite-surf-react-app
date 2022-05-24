@@ -19,6 +19,8 @@ const SpotTable = () => {
 
   return (
     <>
+      <h1 className="mt-4">Locations</h1>
+      <hr />
       {spots && (
         <Table>
           <thead>
@@ -36,9 +38,9 @@ const SpotTable = () => {
               <tr key={spot.id}>
                 <td>{spot.name}</td>
                 <td>{spot.country}</td>
-                <td>{spot.lat}</td>
-                <td>{spot.long}</td>
-                <td>{spot.probability}</td>
+                <td>{spot.lat}° N</td>
+                <td>{spot.long}° W</td>
+                <td>{spot.probability}%</td>
                 <td>{spot.month}</td>
               </tr>
             ))}
