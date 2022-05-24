@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Spinner, Table } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../../features/app/hooks";
-import { getAllSpots } from "../../features/spot/slice";
+import { getAllFavouriteSpots, getAllSpots } from "../../features/spot/slice";
 
 const SpotTable = () => {
   const { spots, isFetching, error } = useAppSelector((state) => state.spot);

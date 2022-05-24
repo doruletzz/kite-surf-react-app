@@ -1,6 +1,8 @@
 import React from "react";
 import LoginForm from "./pages/login/LoginForm";
 
+import "./App.scss";
+
 import { Container } from "react-bootstrap";
 import "leaflet/dist/leaflet.css";
 

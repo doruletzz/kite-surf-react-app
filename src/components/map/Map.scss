@@ -11,6 +11,8 @@
     margin: 0;
     padding: 0;
 
+    margin-top: 0.5rem;
+
     background-color: #e8b100;
 
     &:hover {
@@ -28,7 +30,7 @@
   }
 
   .leaflet-popup-content-wrapper {
-    padding-bottom: 0;
+    padding: 0;
     border-radius: 0 !important;
   }
 
@@ -41,12 +43,30 @@
   }
 
   .leaflet-popup-close-button {
-    margin-top: 1rem;
+    margin-top: 1.66rem;
     margin-right: 0.5rem;
   }
+  .item_container {
+    padding-top: 1rem;
 
-  .item {
-    margin-right: 0.5rem;
-    margin-left: 0.5rem;
+    h4 {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    h5 {
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    h6 {
+      font-weight: 400;
+      font-size: 14px;
+    }
+
+    .item {
+      margin-right: 2.5rem;
+      margin-left: 0.5rem;
+    }
   }
 }
