@@ -14,9 +14,9 @@ const AppNavbar = () => {
   const { user } = useAppSelector((state) => state.user);
 
   return (
-    <Navbar bg="light" expand="lg">
-      <Container fluid>
-        <Navbar.Brand href="#home">Kite</Navbar.Brand>
+    <Navbar bg="light" expand="lg" fixed="top">
+      <Container>
+        <Navbar.Brand href="#map">Kite</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav>
@@ -26,7 +26,9 @@ const AppNavbar = () => {
                   <Image height={"36px"} src={user?.avatar} />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item eventKey="1">logout</Dropdown.Item>
+                  <Dropdown.Item onClick={() => alert("logging out")}>
+                    logout
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Nav.Item>

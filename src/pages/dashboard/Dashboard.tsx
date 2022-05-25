@@ -13,7 +13,7 @@ const Dashboard = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <Container>
+    <Container fluid className="p-0">
       <AppNavbar />
       {!user && <Navigate to="/login" replace={true} />}
       {/* <h1>home</h1> */}

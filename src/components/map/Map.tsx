@@ -51,72 +51,72 @@ const Map = () => {
   if (error) return <p>{error.message}</p>;
 
   return (
-    <MapContainer
-      style={{ width: "100%", height: "24rem" }}
-      center={[45.2218, 106.8426]}
-      zoom={3}
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      {/* <Marker position={[51.505, -0.09]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker> */}
-      {spots.map((spot) => {
-        const fav = isFavourite(spot.id);
-        return (
-          <Marker
-            icon={
-              new Icon({
-                iconUrl: fav ? highlightedMarkerUrl : defaultMarkerUrl,
-                iconSize: new Point(30, 42),
-              })
-            }
-            key={spot.id}
-            position={[spot.lat, spot.long]}
-          >
-            <Popup className={"popup "}>
-              <div className="item_container">
-                <h4 className="item">{`${spot.name} ${fav ? "⭐" : ""}`}</h4>
-                <h5 className="item">{spot.country}</h5>
-                <br />
+    <div>
+      <span className="anchor" id="map" />
+      <MapContainer
+        style={{ width: "100%", height: "24rem" }}
+        center={[45.2218, 106.8426]}
+        zoom={3}
+        className="map_container"
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
 
-                <h5 className="item">WIND PROBABILITY</h5>
-                <h6 className="item">{spot.probability}%</h6>
+        {spots.map((spot) => {
+          const fav = isFavourite(spot.id);
+          return (
+            <Marker
+              icon={
+                new Icon({
+                  iconUrl: fav ? highlightedMarkerUrl : defaultMarkerUrl,
+                  iconSize: new Point(30, 42),
+                })
+              }
+              key={spot.id}
+              position={[spot.lat, spot.long]}
+            >
+              <Popup className={"popup "}>
+                <div className="item_container">
+                  <h4 className="item">{`${spot.name} ${fav ? "⭐" : ""}`}</h4>
+                  <h5 className="item">{spot.country}</h5>
+                  <br />
 
-                <h5 className="item">LATITUDE</h5>
-                <h6 className="item">{spot.lat}° N</h6>
+                  <h5 className="item">WIND PROBABILITY</h5>
+                  <h6 className="item">{spot.probability}%</h6>
 
-                <h5 className="item">LONGITUDE</h5>
-                <h6 className="item">{spot.long}° W</h6>
+                  <h5 className="item">LATITUDE</h5>
+                  <h6 className="item">{spot.lat}° N</h6>
 
-                <h5 className="item">WHEN TO GO</h5>
-                <h6 className="item">{spot.month}</h6>
+                  <h5 className="item">LONGITUDE</h5>
+                  <h6 className="item">{spot.long}° W</h6>
 
-                {fav ? (
-                  <button
-                    onClick={() => dispatch(deleteFavouriteSpot(fav))}
-                    className={"button_remove"}
-                  >
-                    - REMOVE FROM FAVOURITES
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => dispatch(addFavouriteSpot(spot))}
-                    className={"button_add"}
-                  >
-                    + ADD TO FAVOURITES
-                  </button>
-                )}
-              </div>
-            </Popup>
-          </Marker>
-        );
-      })}
-    </MapContainer>
+                  <h5 className="item">WHEN TO GO</h5>
+                  <h6 className="item">{spot.month}</h6>
+
+                  {fav ? (
+                    <button
+                      onClick={() => dispatch(deleteFavouriteSpot(fav))}
+                      className={"button_remove"}
+                    >
+                      - REMOVE FROM FAVOURITES
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => dispatch(addFavouriteSpot(spot))}
+                      className={"button_add"}
+                    >
+                      + ADD TO FAVOURITES
+                    </button>
+                  )}
+                </div>
+              </Popup>
+            </Marker>
+          );
+        })}
+      </MapContainer>
+    </div>
   );
 };
 
