@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "./pages/login/LoginForm";
+import LoginForm from "./pages/auth/LoginForm";
 
 import "./App.scss";
 

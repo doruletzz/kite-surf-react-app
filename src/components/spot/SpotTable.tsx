@@ -1,11 +1,31 @@
 import React, { useEffect } from "react";
 import { Container, Spinner, Table } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../../features/app/hooks";
-import { getAllFavouriteSpots, getAllSpots } from "../../features/spot/slice";
+import {
+  getAllFavouriteSpots,
+  getAllSpots,
+  Spot,
+} from "../../features/spot/slice";
+import { FilterOption } from "../../pages/dashboard/Dashboard";
 
 import "./SpotTable.scss";
 
-const SpotTable = () => {
+export const filterSpot = (
+  spot: Spot,
+  filterOptions: FilterOption
+): boolean => {
+  return (
+    spot.probability <= filterOptions.probability &&
+    spot.country.toLowerCase().startsWith(filterOptions.country.toLowerCase())
+  );
+};
+
+type SpotTableProps = {
+  filterOptions: FilterOption;
+  isFilterSelected: boolean;
+};
+
+const SpotTable = ({ filterOptions, isFilterSelected }: SpotTableProps) => {
   const { spots, isFetching, error } = useAppSelector((state) => state.spot);
 
   const dispatch = useAppDispatch();
@@ -37,7 +57,10 @@ const SpotTable = () => {
               </tr>
             </thead>
             <tbody>
-              {spots.map((spot) => (
+              {(isFilterSelected
+                ? spots.filter((spot) => filterSpot(spot, filterOptions))
+                : spots
+              ).map((spot) => (
                 <tr key={spot.id}>
                   <td>{spot.name}</td>
                   <td>{spot.country}</td>

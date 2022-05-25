@@ -8,10 +8,14 @@ import {
   Image,
   Dropdown,
 } from "react-bootstrap";
-import { useAppSelector } from "../features/app/hooks";
+import { useAppDispatch, useAppSelector } from "../features/app/hooks";
+import { unloadToken } from "../features/auth/slice";
+import { removeUser } from "../features/user/slice";
 
 const AppNavbar = () => {
   const { user } = useAppSelector((state) => state.user);
+
+  const dispatch = useAppDispatch();
 
   return (
     <Navbar bg="light" expand="lg" fixed="top">
@@ -26,7 +30,12 @@ const AppNavbar = () => {
                   <Image height={"36px"} src={user?.avatar} />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={() => alert("logging out")}>
+                  <Dropdown.Item
+                    onClick={() => {
+                      dispatch(removeUser());
+                      dispatch(unloadToken());
+                    }}
+                  >
                     logout
                   </Dropdown.Item>
                 </Dropdown.Menu>

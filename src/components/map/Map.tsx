@@ -1,5 +1,5 @@
 import { Icon, Point } from "leaflet";
-import React, { useEffect } from "react";
+import React, { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { Spinner } from "react-bootstrap";
 
 import { MapContainer, TileLayer, useMap, Popup, Marker } from "react-leaflet";
@@ -7,24 +7,38 @@ import { useAppDispatch, useAppSelector } from "../../features/app/hooks";
 import {
   addFavouriteSpot,
   deleteFavouriteSpot,
+  FavouriteSpot,
   getAllFavouriteSpots,
   getAllSpots,
   removeFavouriteSpot,
   saveFavouriteSpot,
 } from "../../features/spot/slice";
 
-import defaultMarkerUrl from "../../assets/default-marker.png";
-import highlightedMarkerUrl from "../../assets/highlighted-marker.png";
-
 import "./Map.scss";
+import Filter from "./Filter";
+import MapMarker from "./MapMarker";
+import { FilterOption } from "../../pages/dashboard/Dashboard";
+import { filterSpot } from "../spot/SpotTable";
 
-const Map = () => {
+type MapProps = {
+  filterOptions: FilterOption;
+  setFilterOptions: Dispatch<SetStateAction<FilterOption>>;
+  isFilterSelected: boolean;
+  setIsFilterSelected: Dispatch<SetStateAction<boolean>>;
+};
+
+const Map = ({
+  filterOptions,
+  setFilterOptions,
+  isFilterSelected,
+  setIsFilterSelected,
+}: MapProps) => {
   const { favourites, spots, isFetching, error } = useAppSelector(
     (state) => state.spot
   );
   const dispatch = useAppDispatch();
 
-  const isFavourite = (spotId: number) => {
+  const getFavouriteById = (spotId: number): FavouriteSpot | null => {
     for (const el of favourites) {
       if (typeof el.spot === "number") {
         if (el.spot === spotId) {
@@ -37,6 +51,10 @@ const Map = () => {
 
     return null;
   };
+
+  useEffect(() => {
+    console.log(filterOptions);
+  }, [filterOptions]);
 
   useEffect(() => {
     if (!spots.length) dispatch(getAllSpots());
@@ -64,55 +82,24 @@ const Map = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {spots.map((spot) => {
-          const fav = isFavourite(spot.id);
+        <div className="overlay">
+          <Filter
+            filterOptions={filterOptions}
+            setFilterOptions={setFilterOptions}
+            isFilterSelected={isFilterSelected}
+            setIsFilterSelected={setIsFilterSelected}
+          />
+        </div>
+
+        {(isFilterSelected
+          ? spots.filter((spot) => filterSpot(spot, filterOptions))
+          : spots
+        ).map((spot) => {
+          const fav = getFavouriteById(spot.id);
           return (
-            <Marker
-              icon={
-                new Icon({
-                  iconUrl: fav ? highlightedMarkerUrl : defaultMarkerUrl,
-                  iconSize: new Point(30, 42),
-                })
-              }
-              key={spot.id}
-              position={[spot.lat, spot.long]}
-            >
-              <Popup className={"popup "}>
-                <div className="item_container">
-                  <h4 className="item">{`${spot.name} ${fav ? "⭐" : ""}`}</h4>
-                  <h5 className="item">{spot.country}</h5>
-                  <br />
-
-                  <h5 className="item">WIND PROBABILITY</h5>
-                  <h6 className="item">{spot.probability}%</h6>
-
-                  <h5 className="item">LATITUDE</h5>
-                  <h6 className="item">{spot.lat}° N</h6>
-
-                  <h5 className="item">LONGITUDE</h5>
-                  <h6 className="item">{spot.long}° W</h6>
-
-                  <h5 className="item">WHEN TO GO</h5>
-                  <h6 className="item">{spot.month}</h6>
-
-                  {fav ? (
-                    <button
-                      onClick={() => dispatch(deleteFavouriteSpot(fav))}
-                      className={"button_remove"}
-                    >
-                      - REMOVE FROM FAVOURITES
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => dispatch(addFavouriteSpot(spot))}
-                      className={"button_add"}
-                    >
-                      + ADD TO FAVOURITES
-                    </button>
-                  )}
-                </div>
-              </Popup>
-            </Marker>
+            <div key={spot.id}>
+              <MapMarker spot={spot} fav={fav} />
+            </div>
           );
         })}
       </MapContainer>

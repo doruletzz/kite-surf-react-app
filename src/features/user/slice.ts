@@ -4,6 +4,11 @@ import { AppThunk } from "../app/store";
 
 import axios from "axios";
 import { SERVER_URL } from "../../utils/constants";
+import {
+  deleteTokenFromLocalStorage,
+  getTokenFromLocalStorage,
+  setTokenToLocalStorage,
+} from "../../utils/auth/token";
 
 export interface Error {
   message: string;
@@ -49,12 +54,18 @@ export const userSlice = createSlice({
       state.error = action.payload;
       state.isFetching = false;
     },
+
+    removeUser: (state) => {
+      deleteTokenFromLocalStorage();
+      console.log(getTokenFromLocalStorage());
+      state.user = null;
+    },
   },
 });
 
 const { actions, reducer } = userSlice;
 
-export const { receiveUser, fetchFailed, fetchUser } = actions;
+export const { receiveUser, fetchFailed, fetchUser, removeUser } = actions;
 
 export const getUserById = (id: number): AppThunk => {
   return async (dispatch) => {
@@ -63,9 +74,13 @@ export const getUserById = (id: number): AppThunk => {
       .get(SERVER_URL + "/user/" + id)
       .then(({ data }) => {
         console.log(data);
+        setTokenToLocalStorage(id);
         dispatch(receiveUser(data));
       })
-      .catch((error) => dispatch(fetchFailed(error)));
+      .catch((error) => {
+        deleteTokenFromLocalStorage();
+        dispatch(fetchFailed(error));
+      });
   };
 };
 

@@ -7,15 +7,23 @@ import { SERVER_URL } from "../../utils/constants";
 import { useAppDispatch, useAppSelector } from "../../features/app/hooks";
 import { getUserById } from "../../features/user/slice";
 import { Navigate } from "react-router";
+import { loadTokenFromStorage, login } from "../../features/auth/slice";
 
 const LoginForm = () => {
   const dispatch = useAppDispatch();
 
   const { user, isFetching, error } = useAppSelector((state) => state.user);
+  const auth = useAppSelector((state) => state.auth);
 
   const [validated, setValidated] = useState(false);
 
-  const userId = localStorage.getItem("userId");
+  useEffect(() => {
+    if (!auth.token) dispatch(loadTokenFromStorage());
+  }, [auth.token]);
+
+  useEffect(() => {
+    if (auth.token) dispatch(getUserById(auth.token.token));
+  }, [auth.token]);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -31,44 +39,26 @@ const LoginForm = () => {
     const password = (form.elements.namedItem("password") as HTMLInputElement)
       .value;
 
-    const userId = await login(username, password);
+    dispatch(login(username, password));
 
-    dispatch(getUserById(userId));
     setValidated(true);
   };
 
-  // attempts login onto server
-  // returns userId if successful
-  const login = async (username: string, password: string) => {
-    const response = await axios.post(SERVER_URL + "login", {
-      username,
-      password,
-    });
-
-    return response.data.userId;
-  };
-
   // takes userId from localStorage and refetches User Data
-  const refreshLogin = async () => {
-    if (userId) {
-      dispatch(getUserById(parseInt(userId)));
-      localStorage.removeItem("userId");
-    }
-  };
+  // const refreshLogin = async () => {
+  //   if (userId) {
+  //     dispatch(getUserById(parseInt(userId)));
+  //     localStorage.removeItem("userId");
+  //   }
+  // };
 
   if (isFetching) return <Spinner animation="border" />;
 
-  if (error) return <p>{error.message}</p>;
-
-  if (user) {
-    localStorage.setItem("userId", user.id.toString());
-    return <Navigate to="/home" replace={true} />;
-  }
-
-  if (userId) refreshLogin();
-
   return (
     <div>
+      {error && <p>{error.message}</p>}
+      {auth.error && <p>{auth.error.message}</p>}
+      {user && <Navigate to="/home" replace={true} />}
       <Form
         validated={validated}
         onSubmit={handleSubmit}
