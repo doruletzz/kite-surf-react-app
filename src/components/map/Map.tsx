@@ -72,6 +72,7 @@ const Map = ({
     <div>
       <span className="anchor" id="map" />
       <MapContainer
+        doubleClickZoom={false}
         style={{ width: "100%", height: "24rem" }}
         center={[45.2218, 106.8426]}
         zoom={3}

@@ -2,6 +2,10 @@ import React, { useState, Dispatch, SetStateAction } from "react";
 import { Button, Form } from "react-bootstrap";
 import { FilterOption } from "../../pages/dashboard/Dashboard";
 
+import "./Filter.scss";
+
+import filterSrc from "../../assets/filter.svg";
+
 type FilterProps = {
   filterOptions: FilterOption;
   setFilterOptions: Dispatch<SetStateAction<FilterOption>>;
@@ -20,12 +24,18 @@ const Filter = ({
   return (
     <div>
       {!isSelected ? (
-        <h5 onClick={() => setIsSelected(true)}>Filters</h5>
+        <h5 className="title" onClick={() => setIsSelected(true)}>
+          <span>
+            <img src={filterSrc} className="filter_icon" />
+            Filters
+          </span>
+        </h5>
       ) : (
-        <Form>
-          <Form.Group className="mb-3" controlId="formCountryFilter">
-            <Form.Label>Country</Form.Label>
+        <Form className="filter_form">
+          <Form.Group className="content" controlId="formCountryFilter">
+            <Form.Label className="label">Country</Form.Label>
             <Form.Control
+              className="control"
               value={filterOptions.country}
               onChange={(event) =>
                 setFilterOptions({
@@ -39,8 +49,9 @@ const Filter = ({
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formCountryFilter">
-            <Form.Label>Wind Probability</Form.Label>
+            <Form.Label className="label">Wind Probability</Form.Label>
             <Form.Control
+              className="control"
               type="number"
               value={filterOptions.probability}
               onChange={(event) =>
@@ -57,12 +68,13 @@ const Filter = ({
           </Form.Group>
 
           <Button
+            className={!isFilterSelected ? "button_apply" : "button_unapply"}
             onClick={() => {
               setIsSelected(false);
               setIsFilterSelected((isSelected) => !isSelected);
             }}
           >
-            {isFilterSelected ? "unapply" : "apply"}
+            {isFilterSelected ? "UNAPPLY FILTER" : "APPLY FILTER"}
           </Button>
         </Form>
       )}

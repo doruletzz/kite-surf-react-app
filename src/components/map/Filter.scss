@@ -1,0 +1,54 @@
+.title {
+  margin: 0;
+  font-size: 16px;
+  cursor: pointer;
+
+  .filter_icon {
+    margin-right: 1rem;
+    height: 0.75rem;
+    margin-bottom: 0.1rem;
+  }
+}
+
+.filter_form {
+  font-family: inherit;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+
+  .label {
+    font-size: 14px;
+    margin: 0;
+    margin-bottom: 0.25rem;
+  }
+
+  .control {
+    border-radius: 0;
+    margin-bottom: 1rem;
+  }
+
+  .button_apply {
+    background-color: blueviolet;
+    font-family: "Roboto";
+    color: inherit;
+    border: 0;
+    font-weight: 500;
+    border-radius: 0;
+    filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.2));
+    width: 100%;
+
+    margin-top: 1rem;
+  }
+
+  .button_unapply {
+    color: inherit;
+    font-family: "Roboto";
+    font-weight: 500;
+    background-color: orangered;
+    border: 0;
+    border-radius: 0;
+    filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.2));
+    width: 100%;
+
+    margin-top: 1rem;
+  }
+}

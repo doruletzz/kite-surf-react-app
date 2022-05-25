@@ -1,0 +1,47 @@
+.navbar {
+  background-color: #fafafa;
+}
+
+.profile {
+  .dropdown {
+    .toggle {
+      background-color: red !important;
+      border: 0;
+      border-radius: 25rem;
+      padding: 0;
+
+      img {
+        border-radius: 2rem;
+      }
+
+      &::after {
+        position: absolute;
+        opacity: 0;
+      }
+
+      &:focus {
+      }
+    }
+
+    .menu {
+      background-color: #fafafa;
+      border: 0;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+
+      right: 0;
+      text-align: center;
+      left: auto;
+
+      min-width: 0;
+
+      .item {
+        color: red;
+        font-weight: 400;
+
+        .logout_icon {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}

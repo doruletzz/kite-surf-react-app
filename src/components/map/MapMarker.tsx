@@ -12,6 +12,8 @@ import defaultMarkerUrl from "../../assets/default-marker.png";
 import highlightedMarkerUrl from "../../assets/highlighted-marker.png";
 import { useAppDispatch } from "../../features/app/hooks";
 
+import "./MapMarker.scss";
+
 type MapMarkerProps = {
   spot: Spot;
   fav: FavouriteSpot | null;

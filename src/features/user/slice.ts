@@ -57,7 +57,6 @@ export const userSlice = createSlice({
 
     removeUser: (state) => {
       deleteTokenFromLocalStorage();
-      console.log(getTokenFromLocalStorage());
       state.user = null;
     },
   },

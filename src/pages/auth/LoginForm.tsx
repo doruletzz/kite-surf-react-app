@@ -44,14 +44,6 @@ const LoginForm = () => {
     setValidated(true);
   };
 
-  // takes userId from localStorage and refetches User Data
-  // const refreshLogin = async () => {
-  //   if (userId) {
-  //     dispatch(getUserById(parseInt(userId)));
-  //     localStorage.removeItem("userId");
-  //   }
-  // };
-
   if (isFetching) return <Spinner animation="border" />;
 
   return (

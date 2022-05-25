@@ -15,7 +15,7 @@ export const filterSpot = (
   filterOptions: FilterOption
 ): boolean => {
   return (
-    spot.probability <= filterOptions.probability &&
+    spot.probability >= filterOptions.probability &&
     spot.country.toLowerCase().startsWith(filterOptions.country.toLowerCase())
   );
 };
