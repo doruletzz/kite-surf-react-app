@@ -1,25 +1,24 @@
 import React, { useState, Dispatch, SetStateAction } from "react";
 import { Button, Form } from "react-bootstrap";
-import { FilterOption } from "../../pages/dashboard/Dashboard";
 
 import "./Filter.scss";
 
 import filterSrc from "../../assets/filter.svg";
+import { useAppDispatch, useAppSelector } from "../../features/app/hooks";
+import { setFilter } from "../../features/spot/slice";
 
-type FilterProps = {
-  filterOptions: FilterOption;
-  setFilterOptions: Dispatch<SetStateAction<FilterOption>>;
-  isFilterSelected: boolean;
-  setIsFilterSelected: Dispatch<SetStateAction<boolean>>;
-};
+// type FilterProps = {
+//   filterOptions: FilterOption;
+//   setFilterOptions: Dispatch<SetStateAction<FilterOption>>;
+//   isFilterSelected: boolean;
+//   setIsFilterSelected: Dispatch<SetStateAction<boolean>>;
+// };
 
-const Filter = ({
-  filterOptions,
-  setFilterOptions,
-  isFilterSelected,
-  setIsFilterSelected,
-}: FilterProps) => {
+const Filter = () => {
   const [isSelected, setIsSelected] = useState(false);
+
+  const { filter } = useAppSelector((state) => state.spot);
+  const dispatch = useAppDispatch();
 
   return (
     <div>
@@ -36,12 +35,14 @@ const Filter = ({
             <Form.Label className="label">Country</Form.Label>
             <Form.Control
               className="control"
-              value={filterOptions.country}
+              value={filter.country}
               onChange={(event) =>
-                setFilterOptions({
-                  ...filterOptions,
-                  country: event.target.value,
-                })
+                dispatch(
+                  setFilter({
+                    ...filter,
+                    country: event.target.value,
+                  })
+                )
               }
               type="text"
               placeholder="Romania"
@@ -53,28 +54,31 @@ const Filter = ({
             <Form.Control
               className="control"
               type="number"
-              value={filterOptions.probability}
+              value={filter.probability}
               onChange={(event) =>
-                setFilterOptions({
-                  ...filterOptions,
-                  probability:
-                    parseInt(event.target.value) && parseInt(event.target.value)
-                      ? parseInt(event.target.value)
-                      : 0,
-                })
+                dispatch(
+                  setFilter({
+                    ...filter,
+                    probability:
+                      parseInt(event.target.value) &&
+                      parseInt(event.target.value)
+                        ? parseInt(event.target.value)
+                        : 0,
+                  })
+                )
               }
               placeholder="100"
             />
           </Form.Group>
 
           <Button
-            className={!isFilterSelected ? "button_apply" : "button_unapply"}
+            className={!filter.isApplied ? "button_apply" : "button_unapply"}
             onClick={() => {
               setIsSelected(false);
-              setIsFilterSelected((isSelected) => !isSelected);
+              dispatch(setFilter({ ...filter, isApplied: !filter.isApplied }));
             }}
           >
-            {isFilterSelected ? "UNAPPLY FILTER" : "APPLY FILTER"}
+            {filter.isApplied ? "UNAPPLY FILTER" : "APPLY FILTER"}
           </Button>
         </Form>
       )}

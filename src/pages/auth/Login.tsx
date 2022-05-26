@@ -9,7 +9,9 @@ import { getUserById } from "../../features/user/slice";
 import { Navigate } from "react-router";
 import { loadTokenFromStorage, login } from "../../features/auth/slice";
 
-const LoginForm = () => {
+import "./Login.scss";
+
+const Login = () => {
   const dispatch = useAppDispatch();
 
   const { user, isFetching, error } = useAppSelector((state) => state.user);
@@ -47,18 +49,21 @@ const LoginForm = () => {
   if (isFetching) return <Spinner animation="border" />;
 
   return (
-    <div>
+    <div className="form_container">
       {error && <p>{error.message}</p>}
       {auth.error && <p>{auth.error.message}</p>}
       {user && <Navigate to="/home" replace={true} />}
+      <h1 className="form_heading">KITE</h1>
       <Form
+        className="form"
         validated={validated}
         onSubmit={handleSubmit}
         style={{ width: "24rem" }}
       >
-        <Form.Group>
-          <Form.Label>username</Form.Label>
+        <Form.Group className="group">
+          <Form.Label className="label">Username</Form.Label>
           <Form.Control
+            className="control"
             required
             type="text"
             name="username"
@@ -69,9 +74,10 @@ const LoginForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group>
-          <Form.Label>password</Form.Label>
+        <Form.Group className="group">
+          <Form.Label className="label">Password</Form.Label>
           <Form.Control
+            className="control"
             required
             type="password"
             name="password"
@@ -81,14 +87,15 @@ const LoginForm = () => {
             please add your password.
           </Form.Control.Feedback>
         </Form.Group>
-        <br />
-        <div>
-          <Button type="submit">Login</Button>
-          <Button>Register</Button>
+        <div className="button_container">
+          <Button className="button_login" type="submit">
+            Login
+          </Button>
+          <Button className="button_register">Register</Button>
         </div>
       </Form>
     </div>
   );
 };
 
-export default LoginForm;
+export default Login;

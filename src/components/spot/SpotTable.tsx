@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { Container, Spinner, Table } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../../features/app/hooks";
 import {
+  FilterOption,
   getAllFavouriteSpots,
   getAllSpots,
   Spot,
 } from "../../features/spot/slice";
-import { FilterOption } from "../../pages/dashboard/Dashboard";
 
 import "./SpotTable.scss";
 
@@ -20,13 +20,10 @@ export const filterSpot = (
   );
 };
 
-type SpotTableProps = {
-  filterOptions: FilterOption;
-  isFilterSelected: boolean;
-};
-
-const SpotTable = ({ filterOptions, isFilterSelected }: SpotTableProps) => {
-  const { spots, isFetching, error } = useAppSelector((state) => state.spot);
+const SpotTable = () => {
+  const { spots, filter, isFetching, error } = useAppSelector(
+    (state) => state.spot
+  );
 
   const dispatch = useAppDispatch();
 
@@ -57,8 +54,8 @@ const SpotTable = ({ filterOptions, isFilterSelected }: SpotTableProps) => {
               </tr>
             </thead>
             <tbody>
-              {(isFilterSelected
-                ? spots.filter((spot) => filterSpot(spot, filterOptions))
+              {(filter.isApplied
+                ? spots.filter((spot) => filterSpot(spot, filter))
                 : spots
               ).map((spot) => (
                 <tr key={spot.id}>

@@ -14,13 +14,12 @@ import { useAppDispatch } from "../../features/app/hooks";
 
 import "./MapMarker.scss";
 
-type MapMarkerProps = {
+type SpotMarkerProps = {
   spot: Spot;
   fav: FavouriteSpot | null;
-  setIsFilterSelected: Dispatch<SetStateAction<boolean>>;
 };
 
-const MapMarker = ({ spot, fav }: MapMarkerProps) => {
+const SpotMarker = ({ spot, fav }: SpotMarkerProps) => {
   const dispatch = useAppDispatch();
 
   return (
@@ -72,4 +71,4 @@ const MapMarker = ({ spot, fav }: MapMarkerProps) => {
   );
 };
 
-export default MapMarker;
+export default SpotMarker;

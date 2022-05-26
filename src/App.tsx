@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "./pages/auth/LoginForm";
+import Login from "./pages/auth/Login";
 
 import "./App.scss";
 
@@ -18,7 +18,7 @@ const App = () => {
       <Provider store={store}>
         <Router>
           <Routes>
-            <Route path="/login" element={<LoginForm />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/home" element={<Dashboard />} />
             <Route path="/" element={<Navigate to="/home" />} />
           </Routes>

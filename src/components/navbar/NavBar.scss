@@ -2,6 +2,10 @@
   background-color: #fafafa;
 }
 
+.add_spot {
+  margin-right: 2rem;
+}
+
 .profile {
   .dropdown {
     .toggle {
@@ -17,9 +21,6 @@
       &::after {
         position: absolute;
         opacity: 0;
-      }
-
-      &:focus {
       }
     }
 

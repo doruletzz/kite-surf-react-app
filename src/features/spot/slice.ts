@@ -4,6 +4,12 @@ import { SERVER_URL } from "../../utils/constants";
 import { AppThunk } from "../app/store";
 import { Entity, Error } from "../user/slice";
 
+export interface FilterOption {
+  probability: number;
+  country: string;
+  isApplied: boolean;
+}
+
 export interface FavouriteSpot extends Entity {
   createdAt: Date;
   spot: Spot | number;
@@ -24,6 +30,7 @@ export type UserState = {
   error: Error | null;
   spots: Array<Spot>;
   favourites: Array<FavouriteSpot>;
+  filter: FilterOption;
 };
 
 const initialState: UserState = {
@@ -31,6 +38,7 @@ const initialState: UserState = {
   error: null,
   spots: [],
   favourites: [],
+  filter: { probability: 0, country: "", isApplied: true },
 };
 
 export const spotSlice = createSlice({
@@ -76,6 +84,9 @@ export const spotSlice = createSlice({
       state.favourites = state.favourites.filter(
         (fs) => fs.id !== action.payload.id
       );
+    },
+    setFilter: (state, action: PayloadAction<FilterOption>) => {
+      state.filter = action.payload;
     },
   },
 });
@@ -144,6 +155,7 @@ export const {
   saveFavouriteSpot,
   errorFavouriteSpot,
   removeFavouriteSpot,
+  setFilter,
 } = actions;
 
 export default reducer;

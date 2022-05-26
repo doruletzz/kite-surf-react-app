@@ -8,19 +8,9 @@ import { Container, Spinner } from "react-bootstrap";
 import NavBar from "../../components/navbar/NavBar";
 import { fetchUser, getUserById } from "../../features/user/slice";
 
-export interface FilterOption {
-  probability: number;
-  country: string;
-}
-
 const Dashboard = () => {
   const { user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
-
-  const [filterOptions, setFilterOptions] = useState<FilterOption>({
-    probability: 0,
-    country: "",
-  });
 
   const [isFilterSelected, setIsFilterSelected] = useState(false);
 
@@ -29,16 +19,8 @@ const Dashboard = () => {
   return (
     <Container fluid className="p-0">
       <NavBar />
-      <Map
-        filterOptions={filterOptions}
-        setFilterOptions={setFilterOptions}
-        isFilterSelected={isFilterSelected}
-        setIsFilterSelected={setIsFilterSelected}
-      />
-      <SpotTable
-        filterOptions={filterOptions}
-        isFilterSelected={isFilterSelected}
-      />
+      <Map />
+      <SpotTable />
     </Container>
   );
 };

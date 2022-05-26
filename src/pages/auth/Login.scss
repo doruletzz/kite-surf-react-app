@@ -1,0 +1,39 @@
+.form_heading {
+  text-align: center;
+  font-size: 12rem;
+  color: darkgray;
+}
+.form_container {
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.form {
+  margin: 0 auto;
+
+  .group {
+    margin-bottom: 1rem;
+
+    .label {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .control {
+      margin: 0;
+    }
+  }
+
+  .button_container {
+    display: flex;
+    justify-content: space-between;
+    .button_login {
+      min-width: 6rem;
+    }
+
+    .button_register {
+      min-width: 6rem;
+    }
+  }
+}
