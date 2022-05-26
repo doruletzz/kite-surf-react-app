@@ -61,8 +61,8 @@ const SpotTable = () => {
                 <tr key={spot.id}>
                   <td>{spot.name}</td>
                   <td>{spot.country}</td>
-                  <td>{spot.lat}° N</td>
-                  <td>{spot.long}° W</td>
+                  <td>{parseFloat(spot.lat.toString()).toFixed(2)}° N</td>
+                  <td>{parseFloat(spot.long.toString()).toFixed(2)}° W</td>
                   <td>{spot.probability}%</td>
                   <td>{spot.month}</td>
                 </tr>

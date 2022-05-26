@@ -27,9 +27,6 @@ const NavBar = () => {
       <Container>
         <Navbar.Brand href="#map">Kite</Navbar.Brand>
         <Nav>
-          <Nav.Item className="add_spot">
-            <Button>add</Button>
-          </Nav.Item>
           <Nav.Item className="profile">
             <Dropdown className="dropdown">
               <Dropdown.Toggle className="toggle shadow-none">

@@ -1,5 +1,6 @@
 .map_container {
   margin-top: 3.5rem;
+  position: relative;
 }
 
 .anchor {
@@ -9,7 +10,7 @@
   visibility: hidden;
 }
 
-.overlay {
+.filter_overlay {
   position: absolute;
   background-color: #fafafa;
 
@@ -20,6 +21,42 @@
   margin-right: 1rem;
 
   padding: 0.5rem 2rem;
+  filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.2));
+
+  cursor: auto;
+}
+
+.add_overlay {
+  position: absolute;
+  background-color: #fafafa;
+
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+
+  margin-bottom: 0.5rem;
+  margin-left: 1rem;
+
+  filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.2));
+
+  cursor: auto;
+}
+
+.add_form_overlay {
+  position: absolute;
+  background-color: #fafafa;
+
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+
+  width: 48rem;
+  height: 20rem;
+
   filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.2));
 
   cursor: auto;

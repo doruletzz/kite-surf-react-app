@@ -1,3 +1,4 @@
+import { LatLng } from "leaflet";
 import React, { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import { useMapEvents } from "react-leaflet";
@@ -11,7 +12,7 @@ import {
 import { filterSpot } from "../spot/SpotTable";
 import SpotMarker from "./SpotMarker";
 
-const SpotMarkers = () => {
+const SpotMarkers = ({ spotToAdd, setSpotToAdd, isAddSelected }) => {
   const { favourites, filter, spots, isFetching, error } = useAppSelector(
     (state) => state.spot
   );
@@ -31,6 +32,24 @@ const SpotMarkers = () => {
     return null;
   };
 
+  const map = useMapEvents(
+    isAddSelected
+      ? {
+          click(e) {
+            setSpotToAdd((prev) => ({
+              ...prev,
+              lat: e.latlng.lat,
+              long: e.latlng.lng,
+            }));
+          },
+        }
+      : { click(e) {} }
+  );
+
+  useEffect(() => {
+    map.setView(new LatLng(spotToAdd.lat, spotToAdd.long), map.getZoom());
+  }, [spotToAdd]);
+
   useEffect(() => {
     if (!spots.length) dispatch(getAllSpots());
     else console.log(spots);
@@ -42,32 +61,6 @@ const SpotMarkers = () => {
   if (isFetching) return <Spinner animation="border" />;
 
   if (error) return <p>{error.message}</p>;
-
-  // const [spotToAdd, setSpotToAdd] = useState<Spot>({
-  //   id: -1,
-  //   createdAt: new Date(),
-  //   name: "",
-  //   lat: 0,
-  //   long: 0,
-  //   probability: 0,
-  //   country: "",
-  //   month: "",
-  // });
-
-  // const map = useMapEvents({
-  //   click(e) {
-  //     setSpotToAdd((prev) => ({
-  //       ...prev,
-  //       lat: e.latlng.lat,
-  //       long: e.latlng.lng,
-  //     }));
-  //   },
-  // });
-
-  // useEffect(() => {
-  //   if(spotToAdd.lat && spotToAdd.long)
-
-  // }, [spotToAdd]);
 
   return (
     <div>

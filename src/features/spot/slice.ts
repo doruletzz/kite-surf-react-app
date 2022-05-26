@@ -88,6 +88,12 @@ export const spotSlice = createSlice({
     setFilter: (state, action: PayloadAction<FilterOption>) => {
       state.filter = action.payload;
     },
+    saveSpot: (state, action: PayloadAction<Spot>) => {
+      state.spots = [...state.spots, action.payload];
+    },
+    errorSpot: (state, action: PayloadAction<Error>) => {
+      state.error = action.payload;
+    },
   },
 });
 
@@ -101,6 +107,18 @@ export const getAllSpots = (): AppThunk => {
         dispatch(receiveAllSpots(data));
       })
       .catch((error) => dispatch(fetchAllSpotsFailed(error)));
+  };
+};
+
+export const addSpot = (s: Spot): AppThunk => {
+  return async (dispatch) => {
+    axios
+      .post(SERVER_URL + "/spot", s)
+      .then(({ data }) => {
+        console.log(data);
+        dispatch(saveSpot(data));
+      })
+      .catch((error) => dispatch(errorSpot(error)));
   };
 };
 
@@ -156,6 +174,8 @@ export const {
   errorFavouriteSpot,
   removeFavouriteSpot,
   setFilter,
+  saveSpot,
+  errorSpot,
 } = actions;
 
 export default reducer;

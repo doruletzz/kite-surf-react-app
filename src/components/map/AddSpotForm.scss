@@ -1,0 +1,33 @@
+.add_form {
+  font-size: 13px;
+  padding: 2rem;
+
+  .group {
+    font-size: 13px;
+
+    margin-bottom: 0.5rem;
+
+    .control {
+      font-size: 12px;
+      padding: 0 1rem;
+      height: 2rem;
+      background-color: none;
+      border-radius: 0;
+
+      border: 0;
+    }
+
+    .label {
+      font-size: 14px;
+      margin: 0;
+    }
+  }
+}
+
+.add_form_button {
+  width: 100%;
+}
+
+.cancel_form_button {
+  width: 100%;
+}
