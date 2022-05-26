@@ -1,0 +1,59 @@
+.register_form {
+  width: 48rem;
+  margin: 2rem auto;
+
+  .heading {
+    text-align: center;
+
+    margin-bottom: 4rem;
+  }
+
+  .group {
+    margin-bottom: 2rem;
+    .control {
+      border-radius: 0;
+      margin-bottom: 1rem;
+    }
+
+    .label {
+      font-size: 14px;
+      margin: 0;
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  .image {
+    margin-top: -1rem;
+    padding: 1rem;
+    height: 100%;
+  }
+
+  .register_button {
+    font-size: 14px;
+
+    border: 0;
+    border-radius: 0;
+    padding: 0.5rem;
+    width: 12rem;
+    color: white;
+
+    float: right;
+  }
+  .login_button {
+    margin-left: 1rem;
+    font-size: 14px;
+    border: 0;
+    border-radius: 0;
+    padding: 0.5rem;
+    width: 12rem;
+    color: black;
+    float: left;
+
+    background-color: inherit;
+
+    &:hover {
+      color: black;
+      background-color: #eaeaea;
+    }
+  }
+}

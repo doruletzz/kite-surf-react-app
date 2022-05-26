@@ -66,6 +66,22 @@ const { actions, reducer } = userSlice;
 
 export const { receiveUser, fetchFailed, fetchUser, removeUser } = actions;
 
+export const addUser = (user: User): AppThunk => {
+  return async (dispatch) => {
+    axios
+      .post(SERVER_URL + "/user/", user)
+      .then(({ data }) => {
+        console.log("logged in", data);
+        setTokenToLocalStorage(data.id);
+        dispatch(receiveUser(data));
+      })
+      .catch((error) => {
+        deleteTokenFromLocalStorage();
+        dispatch(fetchFailed(error));
+      });
+  };
+};
+
 export const getUserById = (id: number): AppThunk => {
   return async (dispatch) => {
     dispatch(fetchUser());

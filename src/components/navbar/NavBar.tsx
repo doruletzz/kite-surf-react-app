@@ -3,6 +3,7 @@ import React from "react";
 import "./NavBar.scss";
 
 import logoutSrc from "../../assets/logout.svg";
+import defaultIconSrc from "../../assets/default-icon.png";
 
 import {
   Navbar,
@@ -25,7 +26,7 @@ const NavBar = () => {
   return (
     <Navbar className="navbar" expand="lg" fixed="top">
       <Container>
-        <Navbar.Brand href="#map">Kite</Navbar.Brand>
+        <Navbar.Brand href="#map">Kite Surf</Navbar.Brand>
         <Nav>
           <Nav.Item className="profile">
             <Dropdown className="dropdown">
@@ -34,6 +35,7 @@ const NavBar = () => {
                   className="profile_picture"
                   height={"36px"}
                   src={user?.avatar}
+                  alt="profile"
                 />
               </Dropdown.Toggle>
               <Dropdown.Menu className="menu ">

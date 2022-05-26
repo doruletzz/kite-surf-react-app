@@ -6,13 +6,14 @@ import axios from "axios";
 import { SERVER_URL } from "../../utils/constants";
 import { useAppDispatch, useAppSelector } from "../../features/app/hooks";
 import { getUserById } from "../../features/user/slice";
-import { Navigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 import { loadTokenFromStorage, login } from "../../features/auth/slice";
 
 import "./Login.scss";
 
 const Login = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const { user, isFetching, error } = useAppSelector((state) => state.user);
   const auth = useAppSelector((state) => state.auth);
@@ -21,10 +22,7 @@ const Login = () => {
 
   useEffect(() => {
     if (!auth.token) dispatch(loadTokenFromStorage());
-  }, [auth.token]);
-
-  useEffect(() => {
-    if (auth.token) dispatch(getUserById(auth.token.token));
+    else dispatch(getUserById(auth.token.token));
   }, [auth.token]);
 
   const handleSubmit = async (event: FormEvent) => {
@@ -89,7 +87,12 @@ const Login = () => {
           <Button className="login_button" type="submit">
             Login
           </Button>
-          <Button className="register_button">Register</Button>
+          <Button
+            className="register_button"
+            onClick={() => navigate("/register")}
+          >
+            Register
+          </Button>
         </div>
       </Form>
     </div>

@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@faker-js/faker": "^7.1.0",
     "@reduxjs/toolkit": "^1.8.1",
     "@types/leaflet": "^1.7.10",
     "axios": "^0.27.2",

@@ -11,6 +11,7 @@ import { Navigate } from "react-router";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { store } from "./features/app/store";
 import Dashboard from "./pages/dashboard/Dashboard";
+import Register from "./pages/auth/Register";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Router>
           <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/home" element={<Dashboard />} />
             <Route path="/" element={<Navigate to="/home" />} />
           </Routes>
