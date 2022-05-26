@@ -2,6 +2,8 @@ import { Icon, LatLng, Point } from "leaflet";
 import React, { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { Button, Spinner } from "react-bootstrap";
 
+import markerUrl from "../../assets/default-marker.png";
+
 import {
   MapContainer,
   TileLayer,
@@ -50,7 +52,7 @@ const Map = () => {
     long: 0,
     probability: 0,
     country: "",
-    month: "",
+    month: "January",
   });
 
   useEffect(() => {
@@ -64,8 +66,8 @@ const Map = () => {
     <div>
       <span className="anchor" id="map" />
       <MapContainer
-        doubleClickZoom={false}
         style={{ width: "100%", height: "24rem" }}
+        doubleClickZoom={false}
         center={center}
         zoom={3}
         className="map_container"
@@ -100,7 +102,7 @@ const Map = () => {
             className="add_button"
             onClick={() => setIsAddSelected((prev) => !prev)}
           >
-            {isAddSelected ? "+" : "-"}
+            {isAddSelected ? "x" : <img src={markerUrl} width="100%" />}
           </Button>
         </div>
       </MapContainer>

@@ -38,8 +38,8 @@ const SpotMarkers = ({ spotToAdd, setSpotToAdd, isAddSelected }) => {
           click(e) {
             setSpotToAdd((prev) => ({
               ...prev,
-              lat: e.latlng.lat,
-              long: e.latlng.lng,
+              lat: e.latlng.lat % 180,
+              long: e.latlng.lng % 180,
             }));
           },
         }

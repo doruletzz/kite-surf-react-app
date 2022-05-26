@@ -28,12 +28,55 @@
   .button_container {
     display: flex;
     justify-content: space-between;
-    .button_login {
-      min-width: 6rem;
+
+    .login_button {
+      background-color: blueviolet;
+      font-family: "Roboto";
+      color: inherit;
+      border: 0;
+      font-weight: 400;
+      border-radius: 0;
+      filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.2));
+
+      width: 6rem;
+      margin-top: 1rem;
+
+      &:focus {
+        box-shadow: none;
+        background-color: blueviolet;
+        color: inherit;
+      }
+
+      &:hover {
+        box-shadow: none;
+        background-color: blue;
+        color: white;
+      }
     }
 
-    .button_register {
-      min-width: 6rem;
+    .register_button {
+      color: inherit;
+      font-family: "Roboto";
+      font-weight: 400;
+      background-color: greenyellow;
+      border: 0;
+      border-radius: 0;
+      filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.2));
+      width: 6rem;
+
+      margin-top: 1rem;
+
+      &:hover {
+        box-shadow: none;
+        background-color: rgb(13, 201, 13);
+        color: white;
+      }
+
+      &:focus {
+        box-shadow: none;
+        background-color: greenyellow;
+        color: inherit;
+      }
     }
   }
 }

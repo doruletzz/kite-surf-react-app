@@ -1,10 +1,18 @@
 .add_form {
   font-size: 13px;
-  padding: 2rem;
+  padding: 1.5rem;
+
+  .close_button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: 0.5rem;
+    font-weight: 400;
+    padding: 0.5rem;
+  }
 
   .group {
     font-size: 13px;
-
     margin-bottom: 0.5rem;
 
     .control {
@@ -22,12 +30,52 @@
       margin: 0;
     }
   }
-}
 
-.add_form_button {
-  width: 100%;
-}
+  .add_spot_button {
+    background-color: blueviolet;
+    font-family: "Roboto";
+    color: inherit;
+    border: 0;
+    font-weight: 400;
+    border-radius: 0;
+    filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.2));
+    width: 100%;
 
-.cancel_form_button {
-  width: 100%;
+    margin-top: 1rem;
+
+    &:focus {
+      box-shadow: none;
+      background-color: blueviolet;
+      color: inherit;
+    }
+
+    &:hover {
+      box-shadow: none;
+      background-color: blue;
+    }
+  }
+
+  .cancel_spot_button {
+    color: inherit;
+    font-family: "Roboto";
+    font-weight: 400;
+    background-color: orangered;
+    border: 0;
+    border-radius: 0;
+    filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.2));
+    width: 100%;
+
+    margin-top: 1rem;
+
+    &:hover {
+      box-shadow: none;
+      background-color: red;
+    }
+
+    &:focus {
+      box-shadow: none;
+      background-color: orangered;
+      color: inherit;
+    }
+  }
 }

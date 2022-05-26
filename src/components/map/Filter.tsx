@@ -31,6 +31,13 @@ const Filter = () => {
         </h5>
       ) : (
         <Form className="filter_form">
+          <div
+            className="close_button"
+            role="button"
+            onClick={() => setIsSelected(false)}
+          >
+            x
+          </div>
           <Form.Group className="content" controlId="formCountryFilter">
             <Form.Label className="label">Country</Form.Label>
             <Form.Control
@@ -73,10 +80,9 @@ const Filter = () => {
 
           <Button
             className={!filter.isApplied ? "button_apply" : "button_unapply"}
-            onClick={() => {
-              setIsSelected(false);
-              dispatch(setFilter({ ...filter, isApplied: !filter.isApplied }));
-            }}
+            onClick={() =>
+              dispatch(setFilter({ ...filter, isApplied: !filter.isApplied }))
+            }
           >
             {filter.isApplied ? "UNAPPLY FILTER" : "APPLY FILTER"}
           </Button>

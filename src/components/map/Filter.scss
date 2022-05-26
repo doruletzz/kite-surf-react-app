@@ -1,4 +1,5 @@
 .title {
+  padding: 0.5rem 2rem;
   margin: 0;
   font-size: 16px;
   cursor: pointer;
@@ -11,9 +12,19 @@
 }
 
 .filter_form {
+  padding: 0.5rem 2rem;
   font-family: inherit;
   margin-bottom: 1rem;
   margin-top: 1rem;
+
+  .close_button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: 0.5rem;
+    font-weight: 400;
+    padding: 0.5rem;
+  }
 
   .label {
     font-size: 14px;
@@ -37,6 +48,12 @@
     width: 100%;
 
     margin-top: 1rem;
+
+    &:focus {
+      box-shadow: none;
+      background-color: blueviolet;
+      color: inherit;
+    }
   }
 
   .button_unapply {
@@ -50,5 +67,11 @@
     width: 100%;
 
     margin-top: 1rem;
+
+    &:focus {
+      box-shadow: none;
+      background-color: orangered;
+      color: inherit;
+    }
   }
 }

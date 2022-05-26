@@ -32,7 +32,6 @@ const Login = () => {
     const form = event.currentTarget as HTMLFormElement;
     if (form.checkValidity() === false) {
       event.stopPropagation();
-
       return;
     }
 
@@ -41,18 +40,17 @@ const Login = () => {
     const password = (form.elements.namedItem("password") as HTMLInputElement)
       .value;
 
-    dispatch(login(username, password));
-
     setValidated(true);
+    dispatch(login(username, password));
   };
 
   if (isFetching) return <Spinner animation="border" />;
 
   return (
     <div className="form_container">
+      {user && <Navigate to="/home" replace={true} />}
       {error && <p>{error.message}</p>}
       {auth.error && <p>{auth.error.message}</p>}
-      {user && <Navigate to="/home" replace={true} />}
       <h1 className="form_heading">KITE</h1>
       <Form
         className="form"
@@ -88,10 +86,10 @@ const Login = () => {
           </Form.Control.Feedback>
         </Form.Group>
         <div className="button_container">
-          <Button className="button_login" type="submit">
+          <Button className="login_button" type="submit">
             Login
           </Button>
-          <Button className="button_register">Register</Button>
+          <Button className="register_button">Register</Button>
         </div>
       </Form>
     </div>

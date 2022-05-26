@@ -30,8 +30,27 @@ type AddSpotFormProps = {
 const AddSpotForm = ({ spot, setSpot, setShowAddForm }: AddSpotFormProps) => {
   const dispatch = useAppDispatch();
 
+  const handleSubmit = (event: FormEvent) => {
+    const form = event.currentTarget;
+    event.preventDefault();
+    if (form.checkValidity() === false) {
+      event.stopPropagation();
+      return;
+    }
+
+    setShowAddForm(false);
+    dispatch(addSpot(spot));
+  };
+
   return (
-    <Form className="add_form">
+    <Form onSubmit={handleSubmit} className="add_form">
+      <div
+        className="close_button"
+        role="button"
+        onClick={() => setShowAddForm(false)}
+      >
+        x
+      </div>
       <h3>Add Spot</h3>
       <Row>
         <Form.Group className="group">
@@ -85,6 +104,7 @@ const AddSpotForm = ({ spot, setSpot, setShowAddForm }: AddSpotFormProps) => {
             className="control"
             as="select"
             name="date"
+            required
             value={spot.month}
             onChange={(event) =>
               setSpot((prev) => ({
@@ -133,13 +153,7 @@ const AddSpotForm = ({ spot, setSpot, setShowAddForm }: AddSpotFormProps) => {
         </Col>
 
         <Col>
-          <Button
-            className="add_spot_button"
-            onClick={() => {
-              setShowAddForm(false);
-              dispatch(addSpot(spot));
-            }}
-          >
+          <Button className="add_spot_button" type="submit">
             confirm
           </Button>
         </Col>

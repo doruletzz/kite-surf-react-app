@@ -20,7 +20,6 @@
   margin-top: 0.5rem;
   margin-right: 1rem;
 
-  padding: 0.5rem 2rem;
   filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.2));
 
   cursor: auto;
@@ -34,12 +33,33 @@
   bottom: 0;
   z-index: 999;
 
+  border-radius: 0;
+
   margin-bottom: 0.5rem;
   margin-left: 1rem;
 
   filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.2));
 
   cursor: auto;
+
+  .add_button {
+    background-color: #fafafa;
+    border: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0;
+    color: black;
+
+    &:focus {
+      box-shadow: none;
+      color: black;
+      background-color: #eaeaea;
+    }
+
+    &:hover {
+      background-color: #eaeaea;
+    }
+  }
 }
 
 .add_form_overlay {
