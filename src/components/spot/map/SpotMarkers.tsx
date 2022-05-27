@@ -27,20 +27,6 @@ const SpotMarkers = ({
   );
   const dispatch = useAppDispatch();
 
-  const getFavouriteById = (spotId: number): FavouriteSpot | null => {
-    for (const el of favourites) {
-      if (typeof el.spot === "number") {
-        if (el.spot === spotId) {
-          return el;
-        }
-      } else if (el.spot.id === spotId) {
-        return el;
-      }
-    }
-
-    return null;
-  };
-
   const map = useMapEvents(
     isAddSelected
       ? {
@@ -66,6 +52,20 @@ const SpotMarkers = ({
     if (!favourites.length) dispatch(getAllFavouriteSpots());
     else console.log(favourites);
   }, []);
+
+  const getFavouriteById = (spotId: number): FavouriteSpot | null => {
+    for (const el of favourites) {
+      if (typeof el.spot === "number") {
+        if (el.spot === spotId) {
+          return el;
+        }
+      } else if (el.spot.id === spotId) {
+        return el;
+      }
+    }
+
+    return null;
+  };
 
   if (isFetching) return <Spinner animation="border" />;
 

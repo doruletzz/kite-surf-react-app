@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../features/app/hooks";
 import { loadTokenFromStorage } from "../../features/auth/slice";
@@ -9,9 +9,9 @@ import { faker } from "@faker-js/faker";
 
 import "./Register.scss";
 
-const Register = () => {
-  const randomImage = faker.image.avatar();
+const randomImage = faker.image.avatar();
 
+const Register = () => {
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
