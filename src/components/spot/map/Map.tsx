@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 
-import markerUrl from "../../assets/default-marker.png";
+import markerUrl from "../../../assets/default-marker.png";
 
 import { MapContainer, TileLayer } from "react-leaflet";
 

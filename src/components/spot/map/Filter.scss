@@ -4,6 +4,16 @@
   font-size: 16px;
   cursor: pointer;
 
+  &:focus {
+    box-shadow: none;
+    color: black;
+    background-color: #eaeaea;
+  }
+
+  &:hover {
+    background-color: #eaeaea;
+  }
+
   .filter_icon {
     margin-right: 1rem;
     height: 0.75rem;
@@ -49,9 +59,13 @@
 
     margin-top: 1rem;
 
+    &:hover {
+      color: inherit;
+      background-color: blue;
+    }
+
     &:focus {
       box-shadow: none;
-      background-color: blueviolet;
       color: inherit;
     }
   }
@@ -68,9 +82,14 @@
 
     margin-top: 1rem;
 
+    &:hover {
+      color: inherit;
+      background-color: red;
+    }
+
     &:focus {
       box-shadow: none;
-      background-color: orangered;
+      background-color: red;
       color: inherit;
     }
   }

@@ -5,8 +5,8 @@ import {
   deleteFavouriteSpot,
 } from "../../../features/spot/slice";
 
-import defaultMarkerUrl from "../../assets/default-marker.png";
-import highlightedMarkerUrl from "../../assets/highlighted-marker.png";
+import defaultMarkerUrl from "../../../assets/default-marker.png";
+import highlightedMarkerUrl from "../../../assets/highlighted-marker.png";
 import { useAppDispatch } from "../../../features/app/hooks";
 
 import "./MapMarker.scss";

@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 
 import "./Filter.scss";
 
-import filterSrc from "../../assets/filter.svg";
+import filterSrc from "../../../assets/filter.svg";
 import { useAppDispatch, useAppSelector } from "../../../features/app/hooks";
 import { setFilter } from "../../../features/spot/slice";
 

@@ -31,8 +31,8 @@ const AddSpotForm = ({ spot, setSpot, setShowAddForm }: AddSpotFormProps) => {
   const dispatch = useAppDispatch();
 
   const handleSubmit = (event: FormEvent) => {
-    const form = event.currentTarget;
     event.preventDefault();
+    const form = event.currentTarget as HTMLFormElement;
     if (form.checkValidity() === false) {
       event.stopPropagation();
       return;
