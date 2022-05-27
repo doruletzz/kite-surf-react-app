@@ -1,8 +1,8 @@
-import React, { Dispatch, SetStateAction } from "react";
+import { Dispatch, FormEvent, SetStateAction } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
-import { Prev } from "react-bootstrap/esm/PageItem";
-import { useAppDispatch } from "../../features/app/hooks";
-import { addSpot, saveSpot, Spot } from "../../features/spot/slice";
+import { useAppDispatch } from "../../../features/app/hooks";
+import { addSpot } from "../../../features/spot/slice";
+import { Spot } from "../../../features/spot/types";
 
 import "./AddSpotForm.scss";
 

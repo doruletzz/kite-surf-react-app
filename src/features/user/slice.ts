@@ -6,30 +6,9 @@ import axios from "axios";
 import { SERVER_URL } from "../../utils/constants";
 import {
   deleteTokenFromLocalStorage,
-  getTokenFromLocalStorage,
   setTokenToLocalStorage,
 } from "../../utils/auth/token";
-
-export interface Error {
-  message: string;
-}
-
-export interface Entity {
-  id: number;
-}
-
-export interface User extends Entity {
-  createdAt: Date;
-  name: string;
-  email: string;
-  avatar: string;
-}
-
-export type UserState = {
-  isFetching: boolean;
-  error: Error | null;
-  user: User | null;
-};
+import { User, UserState } from "./types";
 
 const initialState: UserState = {
   isFetching: false,

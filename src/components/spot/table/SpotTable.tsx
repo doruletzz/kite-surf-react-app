@@ -1,12 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Container, Spinner, Table } from "react-bootstrap";
-import { useAppDispatch, useAppSelector } from "../../features/app/hooks";
-import {
-  FilterOption,
-  getAllFavouriteSpots,
-  getAllSpots,
-  Spot,
-} from "../../features/spot/slice";
+import { useAppDispatch, useAppSelector } from "../../../features/app/hooks";
+import { getAllSpots } from "../../../features/spot/slice";
+import { FilterOption, Spot } from "../../../features/spot/types";
 
 import "./SpotTable.scss";
 
@@ -55,9 +51,9 @@ const SpotTable = () => {
             </thead>
             <tbody>
               {(filter.isApplied
-                ? spots.filter((spot) => filterSpot(spot, filter))
+                ? spots.filter((spot: Spot) => filterSpot(spot, filter))
                 : spots
-              ).map((spot) => (
+              ).map((spot: Spot) => (
                 <tr key={spot.id}>
                   <td>{spot.name}</td>
                   <td>{spot.country}</td>

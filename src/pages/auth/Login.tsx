@@ -1,9 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 
-import { Form, Button, Container, Spinner } from "react-bootstrap";
+import { Form, Button, Spinner } from "react-bootstrap";
 
-import axios from "axios";
-import { SERVER_URL } from "../../utils/constants";
 import { useAppDispatch, useAppSelector } from "../../features/app/hooks";
 import { getUserById } from "../../features/user/slice";
 import { Navigate, useNavigate } from "react-router";

@@ -1,22 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import {
-  setTokenToLocalStorage,
-  getTokenFromLocalStorage,
-  deleteTokenFromLocalStorage,
-} from "../../utils/auth/token";
+import { getTokenFromLocalStorage } from "../../utils/auth/token";
 import { SERVER_URL } from "../../utils/constants";
 import { AppThunk } from "../app/store";
-import { Entity, Error } from "../user/slice";
-
-export interface Token {
-  token: number;
-}
-
-export type AuthType = {
-  token: Token | null;
-  error: Error | null;
-};
+import { Error } from "../app/types";
+import { AuthType, Token } from "./types";
 
 export const initialState: AuthType = {
   token: null,

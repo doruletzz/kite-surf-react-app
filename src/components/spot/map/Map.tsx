@@ -1,48 +1,19 @@
-import { Icon, LatLng, Point } from "leaflet";
-import React, { useEffect, useState, Dispatch, SetStateAction } from "react";
-import { Button, Spinner } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 
 import markerUrl from "../../assets/default-marker.png";
 
-import {
-  MapContainer,
-  TileLayer,
-  useMap,
-  Popup,
-  Marker,
-  useMapEvents,
-} from "react-leaflet";
-import { useAppDispatch, useAppSelector } from "../../features/app/hooks";
-import {
-  addFavouriteSpot,
-  deleteFavouriteSpot,
-  FavouriteSpot,
-  getAllFavouriteSpots,
-  getAllSpots,
-  removeFavouriteSpot,
-  saveFavouriteSpot,
-  Spot,
-} from "../../features/spot/slice";
+import { MapContainer, TileLayer } from "react-leaflet";
 
 import "./Map.scss";
 import Filter from "./Filter";
-import SpotMarker from "./SpotMarker";
-import { filterSpot } from "../spot/SpotTable";
 import SpotMarkers from "./SpotMarkers";
-import AddSpotButton from "./AddSpotForm";
 import AddSpotForm from "./AddSpotForm";
-
-// type MapProps = {
-//   filterOptions: FilterOption;
-//   setFilterOptions: Dispatch<SetStateAction<FilterOption>>;
-//   isFilterSelected: boolean;
-//   setIsFilterSelected: Dispatch<SetStateAction<boolean>>;
-// };
+import { Spot } from "../../../features/spot/types";
 
 const Map = () => {
   const [isAddSelected, setIsAddSelected] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
-  const [center, setCenter] = useState(new LatLng(21.505, -0.09));
 
   const [spotToAdd, setSpotToAdd] = useState<Spot>({
     id: -1,
@@ -68,7 +39,7 @@ const Map = () => {
       <MapContainer
         style={{ width: "100%", height: "24rem" }}
         doubleClickZoom={false}
-        center={center}
+        center={[51.009, -0.006]}
         zoom={3}
         className="map_container"
       >

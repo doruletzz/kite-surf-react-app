@@ -1,15 +1,14 @@
 import { LatLng } from "leaflet";
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Spinner } from "react-bootstrap";
 import { useMapEvents } from "react-leaflet";
-import { useAppDispatch, useAppSelector } from "../../features/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../features/app/hooks";
 import {
-  FavouriteSpot,
   getAllFavouriteSpots,
   getAllSpots,
-  Spot,
-} from "../../features/spot/slice";
-import { filterSpot } from "../spot/SpotTable";
+} from "../../../features/spot/slice";
+import { FavouriteSpot, Spot } from "../../../features/spot/types";
+import { filterSpot } from "../table/SpotTable";
 import SpotMarker from "./SpotMarker";
 
 const SpotMarkers = ({ spotToAdd, setSpotToAdd, isAddSelected }) => {
@@ -36,7 +35,7 @@ const SpotMarkers = ({ spotToAdd, setSpotToAdd, isAddSelected }) => {
     isAddSelected
       ? {
           click(e) {
-            setSpotToAdd((prev) => ({
+            setSpotToAdd((prev: Spot) => ({
               ...prev,
               lat: e.latlng.lat % 180,
               long: e.latlng.lng % 180,

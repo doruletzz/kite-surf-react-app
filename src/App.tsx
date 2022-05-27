@@ -1,9 +1,7 @@
-import React from "react";
 import Login from "./pages/auth/Login";
 
 import "./App.scss";
 
-import { Container } from "react-bootstrap";
 import "leaflet/dist/leaflet.css";
 
 import { Provider } from "react-redux";

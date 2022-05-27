@@ -1,18 +1,16 @@
 import { Icon, Point } from "leaflet";
-import React, { Dispatch, SetStateAction } from "react";
 import { Popup, Marker } from "react-leaflet";
 import {
   addFavouriteSpot,
   deleteFavouriteSpot,
-  FavouriteSpot,
-  Spot,
-} from "../../features/spot/slice";
+} from "../../../features/spot/slice";
 
 import defaultMarkerUrl from "../../assets/default-marker.png";
 import highlightedMarkerUrl from "../../assets/highlighted-marker.png";
-import { useAppDispatch } from "../../features/app/hooks";
+import { useAppDispatch } from "../../../features/app/hooks";
 
 import "./MapMarker.scss";
+import { FavouriteSpot, Spot } from "../../../features/spot/types";
 
 type SpotMarkerProps = {
   spot: Spot;

@@ -1,19 +1,8 @@
-import React from "react";
-
 import "./NavBar.scss";
 
 import logoutSrc from "../../assets/logout.svg";
-import defaultIconSrc from "../../assets/default-icon.png";
 
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Container,
-  Image,
-  Dropdown,
-  Button,
-} from "react-bootstrap";
+import { Navbar, Nav, Container, Image, Dropdown } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../../features/app/hooks";
 import { unloadToken } from "../../features/auth/slice";
 import { removeUser } from "../../features/user/slice";

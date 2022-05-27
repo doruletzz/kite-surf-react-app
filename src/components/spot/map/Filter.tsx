@@ -1,18 +1,11 @@
-import React, { useState, Dispatch, SetStateAction } from "react";
+import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
 import "./Filter.scss";
 
 import filterSrc from "../../assets/filter.svg";
-import { useAppDispatch, useAppSelector } from "../../features/app/hooks";
-import { setFilter } from "../../features/spot/slice";
-
-// type FilterProps = {
-//   filterOptions: FilterOption;
-//   setFilterOptions: Dispatch<SetStateAction<FilterOption>>;
-//   isFilterSelected: boolean;
-//   setIsFilterSelected: Dispatch<SetStateAction<boolean>>;
-// };
+import { useAppDispatch, useAppSelector } from "../../../features/app/hooks";
+import { setFilter } from "../../../features/spot/slice";
 
 const Filter = () => {
   const [isSelected, setIsSelected] = useState(false);
