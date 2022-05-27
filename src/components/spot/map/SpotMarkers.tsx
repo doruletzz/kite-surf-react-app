@@ -1,5 +1,5 @@
 import { LatLng } from "leaflet";
-import { useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { Spinner } from "react-bootstrap";
 import { useMapEvents } from "react-leaflet";
 import { useAppDispatch, useAppSelector } from "../../../features/app/hooks";
@@ -11,7 +11,17 @@ import { FavouriteSpot, Spot } from "../../../features/spot/types";
 import { filterSpot } from "../table/SpotTable";
 import SpotMarker from "./SpotMarker";
 
-const SpotMarkers = ({ spotToAdd, setSpotToAdd, isAddSelected }) => {
+type SpotMarkerProps = {
+  spotToAdd: Spot;
+  setSpotToAdd: Dispatch<SetStateAction<Spot>>;
+  isAddSelected: boolean;
+};
+
+const SpotMarkers = ({
+  spotToAdd,
+  setSpotToAdd,
+  isAddSelected,
+}: SpotMarkerProps) => {
   const { favourites, filter, spots, isFetching, error } = useAppSelector(
     (state) => state.spot
   );

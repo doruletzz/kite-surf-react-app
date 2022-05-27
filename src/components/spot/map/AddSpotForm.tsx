@@ -3,23 +3,9 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import { useAppDispatch } from "../../../features/app/hooks";
 import { addSpot } from "../../../features/spot/slice";
 import { Spot } from "../../../features/spot/types";
+import { MONTHS } from "../../../utils/constants";
 
 import "./AddSpotForm.scss";
-
-export const MONTHS = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
 
 type AddSpotFormProps = {
   spot: Spot;
