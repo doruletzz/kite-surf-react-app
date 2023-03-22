@@ -1,15 +1,32 @@
 .form_heading {
-  text-align: center;
-  font-size: 12rem;
-  color: darkgray;
+  color: #ff3b30;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: bold;
+
+  margin-top: 2rem;
 }
+
 .form_container {
   justify-content: center;
   margin-top: 3rem;
+
+  display: flex;
+  flex-direction: column;
+  max-width: 32rem;
+
+  padding: 4rem;
+
+  margin: 12rem auto;
+
+  border-radius: 1rem;
+  border: 0.1rem solid lightgray ;
+}
+
+.logo {
+  margin: auto;
 }
 
 .form {
-  margin: 0 auto;
 
   .group {
     margin-bottom: 1rem;
@@ -26,56 +43,41 @@
   }
 
   .button_container {
+    margin-top: 2rem;
     display: flex;
     justify-content: space-between;
 
     .login_button {
-      background-color: blueviolet;
-      font-family: "Roboto";
-      color: inherit;
+      background-color: #ff3b30;
+      color: white;
       border: 0;
-      font-weight: 400;
       border-radius: 0;
-      filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.2));
 
-      width: 6rem;
-      margin-top: 1rem;
+      min-width: 9rem;
+      max-height: 2.5rem;
 
-      &:focus {
-        box-shadow: none;
-        background-color: blueviolet;
-        color: inherit;
-      }
-
+      &:focus, 
       &:hover {
+        border-bottom: 0.25rem solid #d2271e;
+        transition: none;
         box-shadow: none;
-        background-color: blue;
-        color: white;
+        background-color: #ff3b30;
       }
     }
 
     .register_button {
       color: inherit;
-      font-family: "Roboto";
-      font-weight: 400;
-      background-color: greenyellow;
+      background-color: transparent;
       border: 0;
       border-radius: 0;
-      filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.2));
-      width: 6rem;
 
-      margin-top: 1rem;
+      min-width: 9rem;
+      height: 2.5rem;
 
-      &:hover {
+      &:hover,
+      &:focus  {
         box-shadow: none;
-        background-color: rgb(13, 201, 13);
-        color: white;
-      }
-
-      &:focus {
-        box-shadow: none;
-        background-color: greenyellow;
-        color: inherit;
+        background-color: #f0f0f0;
       }
     }
   }

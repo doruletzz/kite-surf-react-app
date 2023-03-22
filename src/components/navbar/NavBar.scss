@@ -1,5 +1,10 @@
 .navbar {
   background-color: #fafafa;
+  font-weight: bold;
+
+  .container > a {
+    color: #ff3b30;
+  }
 }
 
 .profile {
